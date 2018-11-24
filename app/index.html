@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cognitive DEMO</title>
+    <link rel="stylesheet" href="./assets/material/material.min.css">
+    <link rel="stylesheet" href="./assets/material/getmdl-select.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Cognitive</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link cognitive-navigation" data-page="gdpr_train" href="#"><i class="material-icons">cached</i>&nbsp;GDPR: Face train</a>
+          <a class="mdl-navigation__link cognitive-navigation" data-page="gdpr" href="#"><i class="material-icons">assignment_ind</i>&nbsp;GDPR: Face mask</a>
+          <a class="mdl-navigation__link cognitive-navigation" data-page="conveyor" href="#"><i class="material-icons">supervisor_account</i>&nbsp;Lego: Conveyor belt</a>
+          <a class="mdl-navigation__link cognitive-navigation" data-page="settings" href="#"><i class="material-icons">settings</i>&nbsp;Azure: Settings</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="app-content cognitive-content" data-page="gdpr_train">
+              <div class="mdl-grid">
+                  <div class="mdl-cell mdl-cell--12-col">
+                      <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 400px;">
+                          <input class="mdl-textfield__input" type="text" id="gtrainGroupId">
+                          <label class="mdl-textfield__label" for="gtrainGroupId">Group Id</label>
+                        </div>&nbsp;
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored" id="gtrainGroupIdSave">Save & use it</button>
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored" id="gtrainGroupIdGuid"><i class="material-icons">autorenew</i></button>
+                      </form>
+                  </div>
+              </div>
+              <div class="mdl-grid">
+                  <div class="mdl-cell mdl-cell--12-col">
+                      <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 300px;">
+                          <input class="mdl-textfield__input" type="text" id="gtrainPersonId">
+                          <label class="mdl-textfield__label" for="gtrainPersonId">Person Name</label>
+                        </div>&nbsp;
+                        <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored" id="gtrainPersonAdd">Add</button>
+                      </form>
+                  </div>
+              </div>
+              <div style="width:100%;"></div>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-spinner mdl-js-spinner is-active hidden" id="gtrainUploadingPhotos"></div>&nbsp;
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select" id="gtrainPersonListContainer">
+                        <input type="text" value="" class="mdl-textfield__input" id="gtrainPersonInput" readonly>
+                        <input type="hidden" value="" name="gtrainPersonInput" id="gtrainPersonIdValue">
+                        <label for="gtrainPersonInput" class="mdl-textfield__label">Person</label>
+                        <ul for="gtrainPersonInput" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="gtrainPersonList">
+                        </ul>
+                    </div>&nbsp;
+                    <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored" id="gtrainPersonPhotoAdd">Upload Photo(s)</button>
+                </div>
+              </div>
+              <div style="width:100%;"></div>
+              <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--accent" id="gtrainPersonGroupTrain">Train</button>
+          </div>
+          <div class="app-content cognitive-content" data-page="gdpr">
+              <div class="app-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__media">
+                  <div class="app-canvas-container">
+                    <div id="gdprImageProcessing" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+                    <canvas id="gdrpCanvas"><canvas>
+                  </div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  Indentify person(s) of "interest" in a group photo.
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <button id="gdrpChoosePhoto" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored">
+                      Choose Photo
+                  </button>
+                  <button id="gdprDownloadResult" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised">
+                      Download Result
+                  </button>
+                </div>
+              </div>
+          </div>
+          <div class="app-content cognitive-content" data-page="conveyor">
+            <div class="app-card-square mdl-card mdl-shadow--2dp">
+              <div class="mdl-card__media">
+                <div class="app-canvas-container">
+                  <canvas id="conveyorCanvas"><canvas>
+                </div>
+              </div>
+              <div class="mdl-card__supporting-text">
+                Indentify when a piece is misplaced on a conveyor belt.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <div class="mdl-grid">
+                  <div class="mdl-cell mdl-cell--4-col">
+                      <button id="conveyorStartVideo" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                        <i class="material-icons" id="conveyorPlayIcon">play_arrow</i>
+                        <i class="material-icons hidden" id="conveyorPauseIcon">pause</i>
+                      </button>
+                  </div>
+                  <div class="mdl-cell mdl-cell--4-col">
+                      Auto-pause
+                      <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="conveyorAutoPause">
+                        <input type="checkbox" id="conveyorAutoPause" class="mdl-switch__input" checked />
+                      </label>
+                  </div>
+                  <div class="mdl-cell mdl-cell--4-col">
+                    
+                  </div>
+                </div>
+                <div class="clear"></div>
+                <span id="conveyorPieceOk" class="mdl-chip mdl-chip--contact hidden">
+                  <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"></span>
+                  <span class="mdl-chip__text">Piece is ok</span>
+                </span>
+                <span id="conveyorPieceNOk" class="mdl-chip mdl-chip--contact hidden">
+                  <span class="mdl-chip__contact mdl-color--red mdl-color-text--white"></span>
+                  <span class="mdl-chip__text">Piece is NOT ok</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="app-content cognitive-content" data-page="settings">
+            <form action="#" id="settingsForm">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label cognitive-settings-input">
+                <input class="mdl-textfield__input" value=" " type="text" id="uriBase" name="uriBase">
+                <label class="mdl-textfield__label" for="uriBase">FaceApi URL</label>
+              </div>
+              <div class="clear"></div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label cognitive-settings-input">
+                <input class="mdl-textfield__input" value=" " type="text" id="subscriptionKey" name="subscriptionKey">
+                <label class="mdl-textfield__label" for="subscriptionKey">FaceApi Subscription Key</label>
+              </div>
+              <div class="clear"></div>
+              <br />
+              <br />
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label cognitive-settings-input">
+                <input class="mdl-textfield__input" value=" " type="text" id="customVisionUrl" name="customVisionUrl">
+                <label class="mdl-textfield__label" for="customVisionUrl">CustomVision URL</label>
+              </div>
+              <div class="clear"></div>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                Save
+              </button>
+            </form>
+            <div id="settingsToast" class="mdl-js-snackbar mdl-snackbar">
+              <div class="mdl-snackbar__text"></div>
+              <button class="mdl-snackbar__action" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div id="noSettingsToast" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
+
+    <script src="./assets/material/material.min.js"></script>
+    <script src="./assets/material/getmdl-select.min.js"></script>
+    <script>
+      // You can also require other files to run in this process
+      const renderer = require('./renderer.js');
+      renderer.bindNavigation('.cognitive-navigation').then(() => {
+        renderer.navigate('settings', false);
+      });
+    </script>
+  </body>
+</html>

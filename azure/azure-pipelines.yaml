@@ -1,0 +1,18 @@
+resources:
+- repo: self
+queue:
+  name: Hosted Windows Container
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node 8.x'
+  inputs:
+    versionSpec: 8.x
+
+- script: 'npm install & npm run pack'
+  workingDirectory: app
+  displayName: 'Install dependencies & pack the application'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: app/dist

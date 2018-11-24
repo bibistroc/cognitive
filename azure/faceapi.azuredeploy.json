@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "accountName": {
+            "defaultValue": "myFaceService",
+            "type": "string"
+        },
+        "SKU": {
+            "type": "string",
+            "metadata": {
+                "description": "F0 for free / S0 for paid"
+            },
+            "allowedValues": [
+                "F0",
+                "S0"
+            ],
+            "defaultValue": "F0"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.CognitiveServices/accounts",
+            "sku": {
+                "name": "[parameters('SKU')]"
+            },
+            "kind": "Face",
+            "name": "[parameters('accountName')]",
+            "apiVersion": "2016-02-01-preview",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {},
+            "dependsOn": []
+        }
+    ]
+}
