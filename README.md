@@ -1,6 +1,6 @@
 # Cognitive
-<!--
-[![Build Status](https://dev.azure.com/gabrielbarbu/cognitive/_apis/build/status/cognitive-build)](https://dev.azure.com/gabrielbarbu/cognitive/_build/latest?definitionId=5) [![Deployment Status](https://vsrm.dev.azure.com/gabrielbarbu/_apis/public/Release/badge/b933a5cd-75d3-4b38-b8f3-980b47ee5084/3/3)](https://github.com/bibistroc/cognitive/releases)-->
+
+[![Build Status](https://dev.azure.com/gabrielbarbu/cognitive/_apis/build/status/cognitive-CI?branchName=master)](https://dev.azure.com/gabrielbarbu/cognitive/_build/latest?definitionId=7?branchName=master) [![Deployment Status](https://vsrm.dev.azure.com/gabrielbarbu/_apis/public/Release/badge/bbe05c92-e772-4eca-b25c-4c8380688e64/1/1)](https://github.com/bibistroc/cognitive/releases)
 
 # Prerequisites
 1. In order to use the application you need to deploy two resources into Azure:
