@@ -66,7 +66,7 @@
     "outputs": {
       "Training API Key": {
         "type": "string",
-        "value": "[listKeys(resourceId('Microsoft.CognitiveServices/accounts', parameters('nameTraining')), providers('Microsoft.CognitiveServices', 'accounts').apiVersions[0]).key1]"
+        "value": "[listKeys(resourceId('Microsoft.CognitiveServices/accounts', parameters('accountName')), providers('Microsoft.CognitiveServices', 'accounts').apiVersions[0]).key1]"
       },
       "Prediction API Key": {
         "type": "string",
